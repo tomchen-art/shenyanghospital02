@@ -32,7 +32,7 @@
 	/* 按钮宽度占满父容器（与输入框对齐） */
 	height: 5vh;
 	/* 高度按需求调整 */
-	font-size: 30px;
+	font-size: 35px;
 	/* 可增加字体大小让按钮更醒目 */
 	background-color: darkcyan;
 
@@ -54,7 +54,7 @@
 	/* 增加边框，输入框更清晰 */
 	padding-left: 40px;
 	/* 左侧留空间给图标，避免文字覆盖 */
-	font-size: 25px;
+	font-size: 30px;
 }
 
 /* 图标样式：定位到输入框左侧 */
@@ -77,7 +77,8 @@
 	flex-direction: row;
 	justify-content: space-between;
 	color: darkcyan;
-	font-size: 25px;
+	font-size: 30px;
 }
 
 </style>
+
