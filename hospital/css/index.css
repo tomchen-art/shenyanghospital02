@@ -1,0 +1,60 @@
+	<style>
+	/* body {
+				display: flex;
+			} */
+
+	.all {
+		width: 100vw;
+		height: auto;
+	}
+
+
+	.all div {
+		border-bottom: 1px solid grey;
+		/* 减去左右margin的宽度，让底部边框不触达右边缘 */
+		width: calc(100% - 6vw);
+		box-sizing: border-box;
+		margin: 2.5vh 3vw;
+	}
+
+	.all div span {
+		font-size: 4vw;
+		margin-left: 2vh;
+	}
+
+	.all div input {
+		margin-left: 5vw;
+		font-size: 2.5vw;
+		color: grey;
+		border: 0;
+		/* 去掉聚焦时的外轮廓 */
+		outline: none;
+		margin-bottom: 2.5vh;
+	}
+
+	.all .wel {
+		font-size: 10vw;
+		border: none;
+	}
+
+	.all .but {
+		text-align: center;
+		border: none;
+	}
+
+	.gender,
+	.date {
+		font-size: 2.5vw;
+	}
+
+	button {
+		width: 90vw;
+		height: 8vh;
+		border-radius: 15px;
+		border: none;
+		background-color: #137E92;
+		font-size: 5vw;
+		color: white;
+	}
+
+	</style>

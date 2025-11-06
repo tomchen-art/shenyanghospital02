@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>选择体检套餐</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" />
+		<style>
+			/* 全局样式：去掉滚动条 */
+			body {
+				margin: 0;
+				padding: 0;
+				overflow-y: auto;
+				/* 隐藏水平滚动条 */
+				overflow-x: hidden;
+			}
+
+			.all {
+				/* 修正笔误，预留底部导航空间 */
+				padding-bottom: 55px;
+			}
+
+			/* 头部导航 */
+			.header-nav {
+				width: 100vw;
+				height: 70px;
+				background-color: #fff;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				padding: 0 15px;
+				position: relative;
+				/* 增加阴影，区分层级 */
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+			}
+
+			.header-nav #ha {
+				position: absolute;
+				text-decoration: none;
+				color: black;
+				left: 15px;
+				top: 50%;
+				transform: translateY(-50%);
+				/* 增大箭头点击区域 */
+				font-size: 20px;
+			}
+
+			.header-nav h1 {
+				margin: 0;
+				font-size: 20px;
+				font-weight: 600;
+			}
+
+			/* 套餐部位 */
+			.body-nav {
+				width: 100%;
+				/* 充满头部下方空间 */
+				min-height: calc(100vh - 70px);
+				background-color: #f5f5f5;
+				display: flex;
+				flex-direction: column;
+				/* 套餐项水平居中 */
+				align-items: center;
+				/* 上下内边距，控制间距 */
+				padding: 20px 0;
+			}
+
+			/* 隐藏内容区域：初始不显示 */
+			.hidden-content {
+				width: 90%;
+				/* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); */
+				display: none;
+
+			}
+
+			/* 隐藏内容“显示”时的样式 */
+			.hidden-content.show {
+				display: block;
+				padding-bottom: 30px;
+			}
+
+			a {
+				text-decoration: none;
+				color: red;
+			}
+
+			a .left :nth-child(2) {
+				color: red;
+			}
+
+			.man {
+				width: 90%;
+				/* 宽度占90%，更美观 */
+				border: 1px solid #999;
+				/* 浅灰色边框更柔和 */
+				display: flex;
+				justify-content: space-between;
+				/* 左右内容分别对齐 */
+				align-items: center;
+				/* 垂直居中 */
+				padding: 15px;
+				margin-bottom: 30px;
+				/* 套餐项之间的间距 */
+				background-color: #fff;
+				/* 白色背景，区分每个套餐 */
+				border-radius: 8px;
+				/* 圆角，提升质感 */
+				box-sizing: border-box;
+			}
+
+			.left h3 {
+				margin: 0;
+				font-size: 18px;
+				font-weight: 600;
+			}
+
+			.left .text2 {
+				font-size: 14px;
+				color: #666;
+			}
+
+			.left .text2:first-child {
+				color: red;
+			}
+
+			.right {
+				/* display: flex;
+				align-items: center; */
+				gap: 5px;
+				/* color: #008B8B; */
+				font-size: 14px;
+				border-left: 1px solid black;
+				padding-left: 50px;
+			}
+
+			#tog {
+				color: purple;
+			}
+
+			/* 底部导航 */
+			.footer-nav {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 55px;
+				background-color: #fff;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+			}
+
+			.nav-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				color: #999;
+				font-size: 12px;
+				text-decoration: none;
+			}
+
+			.nav-item.active {
+				color: #008B8B;
+			}
+
+			.nav-icon {
+				font-size: 20px;
+				margin-bottom: 3px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="all">
+			<!-- 头部导航 -->
+			<div class="header-nav">
+				<a href="./hospital.html" id="ha">
+					<i class="fa fa-arrow-left"></i>
+				</a>
+				<h1>选择体检套餐</h1>
+			</div>
+
+			<!-- 男士套餐 -->
+			<div class="body-nav">
+				<!-- 基础套餐 -->
+				<div class="man">
+					<a href="./selectdate.html">
+						<span class="left">
+							<h3>男士套餐</h3>
+							<div class="text2">普通男士客户-基础套餐</div>
+						</span>
+					</a>
+
+					<span class="right" id="tog">
+						详情
+						<i class="fa fa-chevron-down"></i>
+					</span>
+				</div>
+				<div class="hidden-content" id="hiddenContent">
+					<table cellpadding="0" cellspacing="0" border="1px solid black">
+						<tr>
+							<th>检查项目</th>
+							<th>检查内容</th>
+							<th>检查意义</th>
+						</tr>
+						<tr>
+							<td>一般检查</td>
+							<td>血压、身高、体重、腰围、臀围。</td>
+							<td>通过仪器测定人体基本健康指标。</td>
+						</tr>
+						<tr>
+							<td>血常规</td>
+							<td>血常规24项:中性粒细胞计数绝对值、红细胞压值、血小板比容、单核细胞计数百分比、平均血小板体积、大血小板比例、嗜碱性粒细胞计数百分比、平均血红蛋白含量等。</td>
+							<td>临床三大常规检测之一，是最基本的血液检验。通过观察血细胞的数量变化及形态分布，从而判断血液状况及相关疾病。</td>
+						</tr>
+						<tr>
+							<td>尿常规</td>
+							<td>尿维生素 C 测定、尿比重测定等。</td>
+							<td>临床三大常规检测之一，可用于筛查泌尿系统疾病、肾脏疾病等，还能辅助判断机体的水液代谢、酸碱平衡等状况。</td>
+						</tr>
+					</table>
+				</div>
+				<!-- 脑血管系统 -->
+				<div class="man">
+					<span class="left">
+						<h3>男士套餐</h3>
+						<div class="text2">普通男士客户-脑血管系统</div>
+					</span>
+					<span class="right">
+						详情
+						<i class="fa fa-chevron-down"></i>
+					</span>
+				</div>
+
+				<!-- 肝病检查 -->
+				<div class="man">
+					<span class="left">
+						<h3>男士套餐</h3>
+						<div class="text2">普通男士客户-肝病检查</div>
+					</span>
+					<span class="right">
+						详情
+						<i class="fa fa-chevron-down"></i>
+					</span>
+				</div>
+			</div>
+
+			<!-- 底部导航 -->
+			<div class="footer-nav">
+				<a href="#" class="nav-item active">
+					<i class="fa fa-home nav-icon"></i>
+					<span>云医院</span>
+				</a>
+				<a href="#" class="nav-item">
+					<i class="fa fa-shopping-bag nav-icon"></i>
+					<span>商城</span>
+				</a>
+				<a href="#" class="nav-item">
+					<i class="fa fa-compass nav-icon"></i>
+					<span>发现</span>
+				</a>
+				<a href="#" class="nav-item">
+					<i class="fa fa-user nav-icon"></i>
+					<span>我</span>
+				</a>
+			</div>
+		</div>
+		<script>
+			//获取dom元素
+			const tog = document.getElementById('tog')
+			const hiddenContent = document.getElementById('hiddenContent')
+			tog.addEventListener('click', () => {
+				hiddenContent.classList.toggle('show')
+			})
+		</script>
+	</body>
+</html>

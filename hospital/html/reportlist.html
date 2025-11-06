@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>体检报告</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" />
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: "Microsoft Yahei", sans-serif;
+			}
+
+			/* 头部导航 */
+			.header-nav {
+				width: 100vw;
+				height: 70px;
+				background-color: #fff;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				padding: 0 15px;
+				position: relative;
+				/* 增加阴影，区分层级 */
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+			}
+
+			.header-nav #ha {
+				position: absolute;
+				text-decoration: none;
+				color: black;
+				left: 15px;
+				top: 50%;
+				transform: translateY(-50%);
+				/* 增大箭头点击区域 */
+				font-size: 20px;
+			}
+
+			.header-nav h1 {
+				margin: 0;
+				font-size: 20px;
+				font-weight: 600;
+			}
+
+
+			/* 标签页导航 */
+			.tab-nav {
+				display: flex;
+				border-bottom: 1px solid #ddd;
+				background-color: #fff;
+			}
+
+			.tab-nav .tab-item {
+				flex: 1;
+				text-align: center;
+				padding: 10px 0;
+				font-size: 16px;
+				color: #666;
+				text-decoration: none;
+				position: relative;
+			}
+
+			.tab-nav .tab-item.active {
+				color: #0097a7;
+			}
+
+			.tab-nav .tab-item.active::after {
+				content: "";
+				position: absolute;
+				bottom: -1px;
+				left: 0;
+				right: 0;
+				height: 2px;
+				background-color: #0097a7;
+			}
+
+			/* 内容区通用样式 */
+			.tab-content {
+				padding: 15px;
+				background-color: #f9f9f9;
+			}
+
+			.section {
+				margin-bottom: 15px;
+				background-color: #fff;
+				border-radius: 5px;
+				overflow: hidden;
+			}
+
+			.section-title {
+				background-color: #60a5fa;
+				color: #fff;
+				padding: 10px 15px;
+				font-size: 16px;
+				font-weight: bold;
+			}
+
+			.list {
+				list-style: none;
+			}
+
+			.list-item {
+				display: flex;
+				justify-content: space-between;
+				padding: 10px 15px;
+				border-bottom: 1px solid #eee;
+			}
+
+			.list-item:last-child {
+				border-bottom: none;
+			}
+
+			.list-item .label {
+				color: #333;
+			}
+
+			.list-item .value {
+				color: #666;
+			}
+
+			.list-item .abnormal {
+				color: #e53935;
+			}
+
+			.abnormal-tag {
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				background-color: #e53935;
+				color: #fff;
+				border-radius: 50%;
+				font-size: 12px;
+				text-align: center;
+				line-height: 20px;
+				margin-right: 5px;
+			}
+
+			/* 结论/建议区样式 */
+			.conclusion {
+				padding: 15px;
+			}
+
+			.conclusion h3 {
+				font-size: 16px;
+				margin-bottom: 10px;
+				color: #333;
+			}
+
+			.conclusion p {
+				font-size: 14px;
+				color: #666;
+				line-height: 1.5;
+				margin-bottom: 8px;
+			}
+
+			/* 底部导航 */
+			.footer-nav {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 55px;
+				background-color: #fff;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+			}
+
+			.nav-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				color: #999;
+				font-size: 12px;
+				text-decoration: none;
+			}
+
+			.nav-item.active {
+				color: #008B8B;
+			}
+
+			.nav-icon {
+				font-size: 20px;
+				margin-bottom: 3px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<!-- 头部导航 -->
+			<div class="header-nav">
+				<a href="./personal.html" id="ha">
+					<i class="fa fa-arrow-left"></i>
+				</a>
+				<h1>体检报告</h1>
+			</div>
+
+
+			<!-- 标签页导航 -->
+			<div class="tab-nav">
+				<a href="javascript:;" class="tab-item active" data-tab="conclusion">总检结论</a>
+				<a href="javascript:;" class="tab-item" data-tab="detail">报告详情</a>
+			</div>
+
+			<!-- 总检结论内容 -->
+			<div class="tab-content" id="conclusion">
+				<div class="section">
+					<div class="section-title">异常项</div>
+					<ul class="list">
+						<li class="list-item">
+							<span class="label"><span class="abnormal-tag">异</span>收缩压</span>
+							<span class="value abnormal">149<br>正常值范围：&lt;140</span>
+						</li>
+						<li class="list-item">
+							<span class="label"><span class="abnormal-tag">异</span>白细胞计数</span>
+							<span class="value abnormal">3.56×10^9/L<br>正常值范围：4-10</span>
+						</li>
+					</ul>
+				</div>
+
+				<div class="section">
+					<div class="section-title">一、尊敬的顾客，您本次体检结论如下：</div>
+					<div class="conclusion">
+						<h3>1、超重</h3>
+						<h3>2、血压增高</h3>
+						<h3>3、血常规异常</h3>
+					</div>
+				</div>
+
+				<div class="section">
+					<div class="section-title">二、尊敬的顾客，您本次体检建议信息如下：</div>
+					<div class="conclusion">
+						<h3>1、超重</h3>
+						<p>您的体重指标属超重。体内脂肪过度增加，使体重超过正常范围，可引起高血压、高血脂、糖尿病、冠心病以及免疫功能降低等并发症。建议：合理膳食，以低盐、低脂、高纤维为原则，三餐定时，不暴饮暴食，增加蔬菜水果摄入，减少高热量、高脂肪食物。每周进行至少150分钟中等强度有氧运动，如快走、慢跑、游泳等，也可结合力量训练增加肌肉量，促进脂肪消耗。
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- 报告详情内容 -->
+			<div class="tab-content" id="detail" style="display: none;">
+				<div class="section">
+					<div class="section-title">一般检测</div>
+					<ul class="list">
+						<li class="list-item">
+							<span class="label"><span class="abnormal-tag">异</span>收缩压</span>
+							<span class="value abnormal">149<br>正常值范围：&lt;140</span>
+						</li>
+						<li class="list-item">
+							<span class="label">舒张压</span>
+							<span class="value">90<br>正常值范围：&lt;90</span>
+						</li>
+						<li class="list-item">
+							<span class="label">身高</span>
+							<span class="value">177.00 cm</span>
+						</li>
+						<li class="list-item">
+							<span class="label">体重</span>
+							<span class="value">80 kg</span>
+						</li>
+					</ul>
+				</div>
+
+				<div class="section">
+					<div class="section-title">血常规</div>
+					<ul class="list">
+						<li class="list-item">
+							<span class="label"><span class="abnormal-tag">异</span>白细胞计数</span>
+							<span class="value abnormal">3.56×10^9/L<br>正常值范围：4-10</span>
+						</li>
+						<li class="list-item">
+							<span class="label">红细胞压值</span>
+							<span class="value">47.4 %<br>正常值范围：36-50</span>
+						</li>
+						<li class="list-item">
+							<span class="label">淋巴细胞计数百分比</span>
+							<span class="value">19.03 %<br>正常值范围：18.3-47.9</span>
+						</li>
+						<li class="list-item">
+							<span class="label">单核细胞计数百分比</span>
+							<span class="value">8.00 %<br>正常值范围：4.2-15.2</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- 底部导航 -->
+			<div class="footer-nav">
+				<a href="#" class="nav-item ">
+					<i class="fa fa-home nav-icon"></i>
+					<span>云医院</span>
+				</a>
+				<a href="#" class="nav-item">
+					<i class="fa fa-shopping-bag nav-icon"></i>
+					<span>商城</span>
+				</a>
+				<a href="#" class="nav-item">
+					<i class="fa fa-compass nav-icon"></i>
+					<span>发现</span>
+				</a>
+				<a href="#" class="nav-item active">
+					<i class="fa fa-user nav-icon"></i>
+					<span>我</span>
+				</a>
+			</div>
+		</div>
+
+		<script>
+			// 标签页切换功能
+			const tabItems = document.querySelectorAll('.tab-item');
+			const tabContents = document.querySelectorAll('.tab-content');
+
+			tabItems.forEach(item => {
+				item.addEventListener('click', () => {
+					// 移除所有标签页的激活态
+					tabItems.forEach(tab => tab.classList.remove('active'));
+					// 隐藏所有内容区
+					tabContents.forEach(content => content.style.display = 'none');
+
+					// 添加当前标签页的激活态
+					item.classList.add('active');
+					// 显示对应内容区
+					const tabId = item.getAttribute('data-tab');
+					document.getElementById(tabId).style.display = 'block';
+				});
+			});
+		</script>
+	</body>
+</html>

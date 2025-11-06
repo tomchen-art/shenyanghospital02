@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>预约成功</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" />
+		<style>
+			/* 自定义CSS样式 */
+			:root {
+				--primary: #00c4b4;
+				--secondary: #00a896;
+				--bg-gray-50: #f9fafb;
+				--bg-white: #ffffff;
+				--text-gray-500: #6b7280;
+				--text-gray-600: #4b5563;
+				--text-gray-800: #1f2937;
+				--text-gray-900: #111827;
+				--border-primary: #00c4b4;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: 'Inter', system-ui, -apple-system, sans-serif;
+			}
+
+			/* 头部 */
+			.header-nav {
+				width: 100vw;
+				height: 70px;
+				display: flex;
+				position: relative;
+				justify-content: center;
+				align-items: center;
+				background-color: #fff;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+			}
+
+			#ha {
+				position: absolute;
+				text-decoration: none;
+				color: black;
+				transform: translateY(-50%);
+				top: 50%;
+				left: 15px;
+				font-size: 20px;
+			}
+
+			.header-nav h1 {
+				justify-content: center;
+				font-size: 20px;
+				font-weight: 600;
+			}
+
+			/* 身体 */
+			body {
+				background-color: var(--bg-gray-50);
+				font-family: 'Inter', system-ui, sans-serif;
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.container {
+				width: 100%;
+				padding-right: 1rem;
+				padding-left: 1rem;
+				margin-right: auto;
+				margin-left: auto;
+			}
+
+			@media (min-width: 640px) {
+				.container {
+					max-width: 640px;
+				}
+			}
+
+			@media (min-width: 768px) {
+				.container {
+					max-width: 768px;
+				}
+			}
+
+			@media (min-width: 1024px) {
+				.container {
+					max-width: 1024px;
+				}
+			}
+
+			@media (min-width: 1280px) {
+				.container {
+					max-width: 1280px;
+				}
+			}
+
+			/* 自定义工具类 */
+			.bg-gradient-success {
+				background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+			}
+
+			.text-shadow {
+				text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			}
+
+			.btn-primary {
+				display: inline-block;
+				width: 100%;
+				padding: 0.75rem 1.5rem;
+				font-weight: 500;
+				text-align: center;
+				text-decoration: none;
+				border-radius: 9999px;
+				background-color: var(--primary);
+				color: white;
+				transition: all 300ms ease-in-out;
+				box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+				border: none;
+				cursor: pointer;
+				font-size: 1rem;
+			}
+
+			.btn-primary:hover {
+				background-color: var(--secondary);
+				box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+				transform: translateY(-2px);
+			}
+
+			.btn-secondary {
+				display: inline-block;
+				width: 100%;
+				padding: 0.75rem 1.5rem;
+				font-weight: 500;
+				text-align: center;
+				text-decoration: none;
+				border-radius: 9999px;
+				background-color: white;
+				color: var(--primary);
+				transition: all 300ms ease-in-out;
+				box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+				border: 1px solid var(--border-primary);
+				cursor: pointer;
+				font-size: 1rem;
+				margin-bottom: 1rem;
+			}
+
+			.btn-secondary:hover {
+				background-color: #f9fafb;
+				box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+				transform: translateY(-2px);
+			}
+
+			/* 自定义图标 */
+			.icon {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: 1.5rem;
+				height: 1.5rem;
+				font-size: 1.5rem;
+				line-height: 1;
+			}
+
+			.icon-arrow-left::before {
+				content: '←';
+			}
+
+			.icon-check::before {
+				content: '✓';
+			}
+
+			.icon-home::before {
+				content: '⌂';
+			}
+
+			.icon-shopping-cart::before {
+				content: '🛒';
+			}
+
+			.icon-compass::before {
+				content: '🧭';
+			}
+
+			.icon-user::before {
+				content: '👤';
+			}
+
+			/* 页面组件样式 */
+			.min-h-screen {
+				min-height: 100vh;
+			}
+
+			.flex {
+				display: flex;
+			}
+
+			.flex-col {
+				flex-direction: column;
+			}
+
+			.items-center {
+				align-items: center;
+			}
+
+			.justify-center {
+				justify-content: center;
+			}
+
+			.justify-between {
+				justify-content: space-between;
+			}
+
+			.flex-grow {
+				flex-grow: 1;
+			}
+
+			.bg-white {
+				background-color: var(--bg-white);
+			}
+
+			.shadow-sm {
+				box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+			}
+
+			.sticky {
+				position: sticky;
+			}
+
+			.top-0 {
+				top: 0;
+			}
+
+			.z-10 {
+				z-index: 10;
+			}
+
+			.py-3 {
+				padding-top: 0.75rem;
+				padding-bottom: 0.75rem;
+			}
+
+			.px-4 {
+				padding-left: 1rem;
+				padding-right: 1rem;
+			}
+
+			.p-4 {
+				padding: 1rem;
+			}
+
+			.p-6 {
+				padding: 1.5rem;
+			}
+
+			.p-8 {
+				padding: 2rem;
+			}
+
+			.text-gray-600 {
+				color: var(--text-gray-600);
+			}
+
+			.text-gray-900 {
+				color: var(--text-gray-900);
+			}
+
+			.text-lg {
+				font-size: 1.125rem;
+			}
+
+			.font-medium {
+				font-weight: 500;
+			}
+
+			.w-8 {
+				width: 2rem;
+			}
+
+			.w-full {
+				width: 100%;
+			}
+
+			.max-w-md {
+				max-width: 28rem;
+			}
+
+			.rounded-t-3xl {
+				border-top-left-radius: 1.5rem;
+				border-top-right-radius: 1.5rem;
+			}
+
+			.text-center {
+				text-align: center;
+			}
+
+			.text-white {
+				color: white;
+			}
+
+			.inline-block {
+				display: inline-block;
+			}
+
+			.rounded-full {
+				border-radius: 9999px;
+			}
+
+			.mb-4 {
+				margin-bottom: 1rem;
+			}
+
+			.mb-2 {
+				margin-bottom: 0.5rem;
+			}
+
+			.text-2xl {
+				font-size: 1.5rem;
+			}
+
+			.font-bold {
+				font-weight: 700;
+			}
+
+			.text-white\/90 {
+				color: rgba(255, 255, 255, 0.9);
+			}
+
+			.rounded-b-3xl {
+				border-bottom-right-radius: 1.5rem;
+				border-bottom-left-radius: 1.5rem;
+			}
+
+			.shadow-lg {
+				box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+			}
+
+			.mt-6 {
+				margin-top: 1.5rem;
+			}
+
+			.rounded-lg {
+				border-radius: 0.5rem;
+			}
+
+			.text-gray-500 {
+				color: var(--text-gray-500);
+			}
+
+			.text-sm {
+				font-size: 0.875rem;
+			}
+
+			.shadow-\[0_-2px_10px_rgba\(0\,0\,0\,0.05\)\] {
+				box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+			}
+
+			.py-3 {
+				padding-top: 0.75rem;
+				padding-bottom: 0.75rem;
+			}
+
+			.justify-around {
+				justify-content: space-around;
+			}
+
+			.flex-col {
+				flex-direction: column;
+			}
+
+			.items-center {
+				align-items: center;
+			}
+
+			.text-primary {
+				color: var(--primary);
+			}
+
+			.text-xs {
+				font-size: 0.75rem;
+			}
+
+			.mt-1 {
+				margin-top: 0.25rem;
+			}
+
+			.focus\:outline-none:focus {
+				outline: 2px solid transparent;
+				outline-offset: 2px;
+			}
+
+			.hover\:text-gray-900:hover {
+				color: var(--text-gray-900);
+			}
+
+			/* 底部导航 */
+			.footer-nav {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 55px;
+				background-color: #fff;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+			}
+
+			.nav-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				color: #999;
+				font-size: 12px;
+				text-decoration: none;
+			}
+
+			.nav-item.active {
+				color: #008B8B;
+			}
+
+			.nav-icon {
+				font-size: 20px;
+				margin-bottom: 3px;
+			}
+		</style>
+	</head>
+	<body class="bg-gray-50 font-sans">
+		<div class="min-h-screen flex flex flex-col">
+			<!-- 头部导航 -->
+			<div class="header-nav">
+				<a href="./confirmorder.html" id="ha">
+					<i class="fa fa-arrow-left"></i>
+				</a>
+				<h1>预约成功</h1>
+			</div>
+
+
+			<!-- 主要内容区域 -->
+			<main class="flex-grow flex flex-col items-center justify-center p-4">
+				<div class="w-full max-w-md">
+					<!-- 成功图标区域 -->
+					<div class="bg-gradient-success rounded-t-3xl p-8 text-center text-white">
+						<!-- 成功图标 -->
+						<div class="inline-block p-4 bg-white rounded-full mb-4">
+							<!-- 这里使用Font Awesome图标代替图片 -->
+							<span class="icon icon-check text-4xl text-primary"></span>
+						</div>
+
+						<!-- 成功信息 -->
+						<h2 class="text-2xl font-bold mb-2">恭喜预约成功！</h2>
+						<p class="text-white/90">请体检时携带本人身份证到院认证</p>
+					</div>
+
+					<!-- 按钮区域 -->
+					<div class="bg-white rounded-b-3xl p-6 shadow-lg">
+						<!-- 查看订单按钮 -->
+						<button onclick="window.location.href='#'" class="btn-secondary w-full mb-4">
+							继续为家人预约
+						</button>
+
+						<!-- 继续为家人预约按钮 -->
+						<button onclick="window.location.href='./appointmentlist.html'" class="btn-primary w-full">
+							查看订单
+						</button>
+					</div>
+
+					<!-- 提示信息 -->
+					<div class="mt-6 bg-white rounded-lg p-4 shadow-sm">
+						<p class="text-gray-500 text-sm text-center">
+							预约短信已发送至您的手机<br>
+							请您按时到院体检并凭预约号登记<br>
+							客服电话: 4008-XXXX-XXX
+						</p>
+					</div>
+				</div>
+			</main>
+
+			<!-- 底部导航 -->
+			<div class="footer-nav">
+				<a href="#" class="nav-item active">
+					<i class="fa fa-home nav-icon"></i>
+					<span>云医院</span>
+				</a>
+				<a href="#" class="nav-item">
+					<i class="fa fa-shopping-bag nav-icon"></i>
+					<span>商城</span>
+				</a>
+				<a href="#" class="nav-item">
+					<i class="fa fa-compass nav-icon"></i>
+					<span>发现</span>
+				</a>
+				<a href="#" class="nav-item">
+					<i class="fa fa-user nav-icon"></i>
+					<span>我</span>
+				</a>
+			</div>
+		</div>
+
+		<script>
+			// 所有按钮跳转功能已在HTML中通过onclick属性实现
+			// 跳转目标为"#"，表示空白页面
+			// 后续可根据需要修改为实际页面URL
+		</script>
+	</body>
+</html>

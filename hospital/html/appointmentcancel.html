@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>取消预约成功</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="../css/style.css">
+		<style>
+			/* 完全重置为基础样式 */
+			* {
+				margin: 0;
+				padding: 0;
+				/* box-sizing: border-box; */
+			}
+
+			body {
+				font-family: "Microsoft Yahei", sans-serif;
+				background-color: #ffffff;
+				min-height: 100vh;
+				padding-bottom: 53px;
+				/* 底部导航高度精准匹配 */
+				overflow-x: hidden;
+			}
+
+			/* 头部导航 */
+			.header-nav {
+				width: 100vw;
+				height: 70px;
+				background-color: #fff;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				padding: 0 15px;
+				position: relative;
+				/* 增加阴影，区分层级 */
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+			}
+
+			.header-nav #ha {
+				position: absolute;
+				text-decoration: none;
+				color: black;
+				left: 15px;
+				top: 50%;
+				transform: translateY(-50%);
+				/* 增大箭头点击区域 */
+				font-size: 20px;
+			}
+
+			.header-nav h1 {
+				margin: 0;
+				font-size: 20px;
+				font-weight: 600;
+			}
+
+
+			/* 容器 - 无额外边距 */
+			.container {
+				max-width: 100%;
+				margin: 0;
+				padding: 0;
+			}
+
+			/* 核心内容区 - 精准匹配原图间距 */
+			.success-container {
+				text-align: center;
+				padding-top: 55px;
+				/* 顶部到图标距离 */
+			}
+
+			/* 对号图片预留位置 -/
+        .success-icon {
+            width: 86px;
+            height: 86px;
+            margin: 0 auto 28px; /* 图标与标题间距 */
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			}
+
+			.success-icon img {
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+			}
+
+			/* 标题文字 - 样式 */
+			.success-title {
+				font-size: 20px;
+				color: #333333;
+				margin-bottom: 16px;
+				font-weight: 500;
+				line-height: 1.3;
+			}
+
+			/* 说明文字 -  */
+			.success-desc {
+				font-size: 14px;
+				color: #666666;
+				line-height: 1.6;
+				margin-bottom: 42px;
+				padding: 0 30px;
+				text-align: center;
+			}
+
+			/* 按钮区域 - 改为蓝色方角样式 */
+			.success-btns {
+				display: flex;
+				flex-direction: column;
+				gap: 12px;
+				/* 按钮间距保持不变 */
+				padding: 0 32px;
+				margin-bottom: 75px;
+				/* 按钮到底部文字间距 */
+			}
+
+			.success-btn {
+				height: 46px;
+				line-height: 46px;
+				border-radius: 0;
+				/* 取消圆角，改为方角 */
+				font-size: 15px;
+				text-decoration: none;
+				font-weight: 500;
+				display: inline-block;
+				width: 100%;
+			}
+
+			/* 查看订单按钮：蓝色边框+白底 */
+			.check-order {
+				color: black;
+				/* 蓝色文字 */
+				border: 1px solid #1890ff;
+				/* 蓝色边框 */
+				background-color: #ffffff;
+			}
+
+			/* 继续预约按钮：蓝色背景+白字 */
+			.continue-book {
+				color: black;
+				background-color: #ffffff;
+				/* 主蓝色 */
+				border: 1px solid #1890ff;
+			}
+
+			/* 客服信息  */
+			.service-info {
+				font-size: 12px;
+				color: #999999;
+				line-height: 1.5;
+				padding: 0 30px;
+				margin-bottom: 30px;
+			}
+
+			.service-tel {
+				color: #666666;
+				font-weight: normal;
+			}
+
+			/* 底部导航 */
+			.footer-nav {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 55px;
+				background-color: #fff;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+			}
+
+			.nav-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				color: #999;
+				font-size: 12px;
+				text-decoration: none;
+			}
+
+			.nav-item.active {
+				color: #008B8B;
+			}
+
+			.nav-icon {
+				font-size: 20px;
+				margin-bottom: 3px;
+			}
+
+			#haa {
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 头部导航 -->
+		<div class="header-nav">
+			<a href="./appointmentlist.html" id="ha">
+				<i class="fa fa-arrow-left"></i>
+			</a>
+			<h1>取消预约</h1>
+		</div>
+
+		<!-- 核心内容 -->
+		<div class="container">
+			<div class="success-container">
+				<div class="success-icon">
+					<img src="../img/duihao.jpg" alt="取消成功图标">
+				</div>
+
+				<!-- 标题 - -->
+				<h2 class="success-title">取消预约成功! 退款将在24小时之内到账</h2>
+
+				<!-- 说明文字 - 分行、内容 -->
+				<p class="success-desc">
+					您的信息已经发送至体检机构<br>
+					取消预约后会发送短信至您的手机<br>
+					客服电话 4008-XXX-XXX
+				</p>
+
+				<!-- 蓝色方角按钮 -->
+				<div class="success-btns">
+					<a href="#" class="success-btn check-order">查看订单</a>
+					<a href="#" class="success-btn continue-book">继续为家人预约</a>
+				</div>
+
+				<!-- 客服信息  -->
+				<div class="service-info">
+					（以上信息仅为提示，具体以实际到账为准）
+				</div>
+			</div>
+		</div>
+
+		<!-- 底部导航 -->
+		<div class="footer-nav">
+			<a href="#" class="nav-item active">
+				<i class="fa fa-home nav-icon"></i>
+				<span>云医院</span>
+			</a>
+			<a href="#" class="nav-item">
+				<i class="fa fa-shopping-bag nav-icon"></i>
+				<span>商城</span>
+			</a>
+			<a href="#" class="nav-item">
+				<i class="fa fa-compass nav-icon"></i>
+				<span>发现</span>
+			</a>
+			<a href="./personal.html" class="nav-item" id="haa">
+				<i class="fa fa-user nav-icon"></i>
+				<span>我</span>
+			</a>
+		</div>
+	</body>
+</html>

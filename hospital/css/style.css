@@ -1,0 +1,171 @@
+/* 基础样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft Yahei", sans-serif;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    padding-bottom: 55px; /* 预留底部高度 */
+}
+
+/* 头部样式 - 固定高度70px */
+.header {
+    height: 70px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding: 0 15px;
+}
+
+.header .back {
+    position: absolute;
+    left: 15px;
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+}
+
+.header h1 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* 内容区域通用样式 */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+/* 预约列表样式（第一页） */
+.booking-list {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.booking-item {
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.booking-item:last-child {
+    border-bottom: none;
+}
+
+.booking-info .date {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.booking-info .name {
+    font-size: 16px;
+    color: #333;
+}
+
+.cancel-btn {
+    color: #ff4d4f;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.cancel-btn:hover {
+    background-color: rgba(255,77,79,0.1);
+}
+
+/* 取消成功页样式（第二页） */
+.success-container {
+    text-align: center;
+    padding-top: 50px;
+}
+
+.success-icon {
+    width: 100px;
+    height: 100px;
+    background-color: #52c41a;
+    border-radius: 50%;
+    margin: 0 auto 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 50px;
+}
+
+.success-title {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.success-desc {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.back-btn {
+    display: inline-block;
+    width: 80%;
+    max-width: 300px;
+    height: 45px;
+    line-height: 45px;
+    background-color: #1890ff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.back-btn:hover {
+    background-color: #096dd9;
+}
+
+/* 底部样式 - 固定高度55px */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 55px;
+    background-color: #fff;
+    border-top: 1px solid #eee;
+    display: flex;
+}
+
+.footer-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.footer-item i {
+    font-size: 20px;
+    margin-bottom: 3px;
+}
+
+.footer-item.active {
+    color: #1890ff;
+}
